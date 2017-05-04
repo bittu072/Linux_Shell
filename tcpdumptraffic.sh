@@ -11,6 +11,7 @@ do
         now=$(date +"%T")
         echo "time : $now" >> "/home/bittu/computer/logs/trafficlog"
 	# -c flag will check traffic for 30 seconds
-        tcpdump -i wlp4s0 -c 30 >> /home/bittu/computer/logs/trafficlog
+	# added filter for the traffic
+        tcpdump -i wlp4s0 src 192.168.0.1 and not dst 192.168.0.1 -c 30 >> /home/bittu/computer/logs/trafficlog
         sleep 3600
 done
